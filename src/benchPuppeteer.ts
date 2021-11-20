@@ -50,7 +50,7 @@ async function run(page: Page, framework: string, url: string) {
   });
 
   await page.click("#add");
-  sleep(100);
+  sleep(200);
   let metricsAfter = await page.metrics();
   await page.tracing.stop();
   let timelineResult = await fetchEventsFromPerformanceLog(traceFileName);

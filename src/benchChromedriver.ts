@@ -60,7 +60,7 @@ async function run(driver: WebDriver, framework: string, url: string) {
   await driver.get(url);
   let add = await driver.findElement(By.id("add"));
   await add.click();
-  sleep(100);
+  sleep(200);
   let timelineResult = await fetchEventsFromPerformanceLog(driver);
   return (timelineResult.paintEnd - timelineResult.clickStart) / 1000.0;
 }
