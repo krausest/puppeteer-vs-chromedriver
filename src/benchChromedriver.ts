@@ -60,7 +60,7 @@ async function run(driver: WebDriver, framework: string, url: string) {
   await driver.get(url);
   let add = await driver.findElement(By.id("add"));
   await add.click();
-  sleep(200);
+  await sleep(200);
   let timelineResult = await fetchEventsFromPerformanceLog(driver);
   return (timelineResult.paintEnd - timelineResult.clickStart) / 1000.0;
 }
@@ -72,7 +72,7 @@ export async function runChromedriver(executable: string, framework: string) {
   const driver = await init(executable);
   try {
     let duration = await run(driver, framework, urlForFramework(framework));
-    sleep(200);
+    await sleep(200);
 
     let logEntries = await driver.manage().logs().get(logging.Type.BROWSER);
     for (let entry of logEntries) {

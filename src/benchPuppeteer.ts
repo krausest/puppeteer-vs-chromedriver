@@ -50,7 +50,7 @@ async function run(page: Page, framework: string, url: string) {
   });
 
   await page.click("#add");
-  sleep(200);
+  await sleep(200);
   let metricsAfter = await page.metrics();
   await page.tracing.stop();
   let timelineResult = await fetchEventsFromPerformanceLog(traceFileName);
@@ -70,7 +70,7 @@ export async function runPuppeteer(executable: string, framework: string) {
       }
     });
     let duration = await run(page, framework, urlForFramework(framework));
-    sleep(200);
+    await sleep(200);
     if (consoleBuffer.length != 1) throw new Error(`Expected 1 console message, but there was none.`);
     // console.log("duration puppeteer", duration);
     return { timeline: duration, client: Number(consoleBuffer[0]) };
